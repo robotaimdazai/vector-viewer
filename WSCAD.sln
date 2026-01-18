@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCAD", "src\WSCAD.csproj", "{A55C8CB6-9607-E62B-1C4E-A7AF7B7B773E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A55C8CB6-9607-E62B-1C4E-A7AF7B7B773E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55C8CB6-9607-E62B-1C4E-A7AF7B7B773E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55C8CB6-9607-E62B-1C4E-A7AF7B7B773E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55C8CB6-9607-E62B-1C4E-A7AF7B7B773E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB328077-1386-484F-8637-F7464CF06308}
+	EndGlobalSection
+EndGlobal
