@@ -6,6 +6,6 @@ namespace WSCAD.Domain
 	{
 		PrimitiveStyle Style { get; }
 		WorldRect GetBounds();
-		void Accept(IPrimitive visitor);
+		void Accept(IPrimitive visitor); // this is for accepting clicks to display info in future
 	}
 }

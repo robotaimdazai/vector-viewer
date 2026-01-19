@@ -21,7 +21,6 @@ namespace WSCAD.Rendering
             var worldH = Math.Max(1e-9, worldBounds.Height);
 
             var fitScale = Math.Min(availW / worldW, availH / worldH);
-            fitScale = Math.Min(fitScale, 1.0); // don't scale up above 100% for fit mode
 
             Scale = fitScale * Zoom;
         }

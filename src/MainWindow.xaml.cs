@@ -52,5 +52,19 @@ namespace WSCAD
                     MessageBoxImage.Error);
             }
         }
+
+        private void ZoomInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyZoom();
+        }
+
+        private void ApplyZoom()
+        {
+            if (double.TryParse(zoomInput.Text, out var zoomValue) && zoomValue > 0)
+            {
+                SceneView.Zoom = zoomValue / 100.0; // Convert percentage to decimal
+            }
+        }
+
     }
 }
