@@ -14,11 +14,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <rendering:SceneView Grid.Column="0"/>
+        <rendering:SceneView x:Name="SceneView" Grid.Column="0"/>
 
         <!--Toolbar-->
         <StackPanel Grid.Column="2" Orientation="Vertical">
-            <Button x:Name="openFile" Content="Open Json" Click="openFile_Click"/>
+            <Button x:Name="openFile" Content="Open Json" Click="OpenFile_Click"/>
         </StackPanel>
 
 
