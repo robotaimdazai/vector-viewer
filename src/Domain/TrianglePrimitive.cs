@@ -4,17 +4,17 @@ namespace WSCAD.Domain
 {
     public sealed class TrianglePrimitive : IPrimitive
     {
-        public TrianglePrimitive(Point a, Point b, Point c, PrimitiveStyle style)
+        public TrianglePrimitive(WorldPoint a, WorldPoint b, WorldPoint c, PrimitiveStyle style)
         {
             A = a; B = b; C = c; Style = style;
         }
 
-        public Point A { get; }
-        public Point B { get; }
-        public Point C { get; }
+        public WorldPoint A { get; }
+        public WorldPoint B { get; }
+        public WorldPoint C { get; }
         public PrimitiveStyle Style { get; }
 
-        public Rect GetBounds() =>  Rect.FromPoints(new[] { A, B, C }).Inflate(Style.StrokeWidthWorld);
+        public WorldRect GetBounds() =>  WorldRect.FromPoints(new[] { A, B, C }).Inflate(Style.StrokeWidthWorld);
 
         public void Accept(IPrimitive visitor)
         {

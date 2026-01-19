@@ -5,7 +5,7 @@ namespace WSCAD.Domain
 	public interface IPrimitive 
 	{
 		PrimitiveStyle Style { get; }
-		Rect GetBounds();
+		WorldRect GetBounds();
 		void Accept(IPrimitive visitor);
 	}
 }

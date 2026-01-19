@@ -1,11 +1,11 @@
 namespace WSCAD.Geometry 
 {
-    public readonly record struct Rect(double MinX, double MinY, double MaxX, double MaxY) 
+    public readonly record struct WorldRect(double MinX, double MinY, double MaxX, double MaxY) 
     {
         public double Width => MaxX - MinX;
         public double Height => MaxY - MinY;
 
-        public static Rect FromPoints(IEnumerable<Point> points) 
+        public static WorldRect FromPoints(IEnumerable<WorldPoint> points) 
         {
             var minX = double.PositiveInfinity;
             var minY = double.PositiveInfinity;
@@ -20,12 +20,12 @@ namespace WSCAD.Geometry
                 if (p.Y > maxY) maxY = p.Y;
             }
 
-            if (double.IsInfinity(minX)) return new Rect(0, 0, 0, 0);
+            if (double.IsInfinity(minX)) return new WorldRect(0, 0, 0, 0);
 
-            return new Rect(minX, minY, maxX, maxY);
+            return new WorldRect(minX, minY, maxX, maxY);
         }
 
-        public Rect Inflate(double amount)
-        => new Rect(MinX - amount, MinY - amount, MaxX + amount, MaxY + amount);
+        public WorldRect Inflate(double amount)
+        => new WorldRect(MinX - amount, MinY - amount, MaxX + amount, MaxY + amount);
     }
 }

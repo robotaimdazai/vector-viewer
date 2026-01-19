@@ -11,16 +11,16 @@ namespace WSCAD.Domain
         }
 
         public IReadOnlyList<IPrimitive> Primitives { get; }
-        public Rect Bounds { get; }
+        public WorldRect Bounds { get; }
 
-        private static Rect ComputeBounds(IReadOnlyList<IPrimitive> primitives) 
+        private static WorldRect ComputeBounds(IReadOnlyList<IPrimitive> primitives) 
         {
-            if (primitives.Count == 0) return new Rect(0, 0, 0, 0);
+            if (primitives.Count == 0) return new WorldRect(0, 0, 0, 0);
             var rect = primitives[0].GetBounds();
             for (var i = 1; i < primitives.Count; i++)
             {
                 var b = primitives[i].GetBounds();
-                rect = new Rect(
+                rect = new WorldRect(
                     Math.Min(rect.MinX, b.MinX),
                     Math.Min(rect.MinY, b.MinY),
                     Math.Max(rect.MaxX, b.MaxX),

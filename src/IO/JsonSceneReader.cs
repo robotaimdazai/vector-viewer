@@ -75,10 +75,10 @@ namespace WSCAD.IO
             return double.Parse(token, CultureInfo.InvariantCulture);
         }
 
-        private static Point ParsePoint(String s) 
+        private static WorldPoint ParsePoint(String s) 
         {
             var parts = s.Split(';');
-            return new Point(ParseDoubleLoose(parts[0]), ParseDoubleLoose(parts[1]));
+            return new WorldPoint(ParseDoubleLoose(parts[0]), ParseDoubleLoose(parts[1]));
         }
 
         private static PrimitiveStyle ParseStyle(JsonElement obj, bool fillDefault = false) 
