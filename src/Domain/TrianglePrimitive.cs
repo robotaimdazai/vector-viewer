@@ -15,10 +15,5 @@ namespace WSCAD.Domain
         public PrimitiveStyle Style { get; }
 
         public WorldRect GetBounds() =>  WorldRect.FromPoints(new[] { A, B, C }).Inflate(Style.StrokeWidthWorld);
-
-        public void Accept(IPrimitive visitor)
-        {
-
-        }
     }
 }

@@ -18,11 +18,5 @@ namespace WSCAD.Domain
             Center.X - Radius, Center.Y - Radius,
             Center.X + Radius, Center.Y + Radius
         ).Inflate(Style.StrokeWidthWorld);
-
-        public void Accept(IPrimitive visitor)
-        {
-
-        }
-
     }
 }

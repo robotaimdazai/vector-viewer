@@ -7,6 +7,8 @@ namespace WSCAD.Rendering
 {
     public sealed class SceneView : FrameworkElement
     {
+        private static readonly ISceneRenderer _renderer = new WpfSceneRenderer();
+
         public static readonly DependencyProperty SceneProperty =
             DependencyProperty.Register
             (
@@ -25,6 +27,7 @@ namespace WSCAD.Rendering
                 new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender)
             );
 
+
         public Scene? Scene 
         { 
             get => (Scene?)GetValue(SceneProperty);
@@ -35,6 +38,7 @@ namespace WSCAD.Rendering
             get => (double)GetValue(ZoomProperty);
             set => SetValue(ZoomProperty, value);
         }
+
 
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -60,59 +64,7 @@ namespace WSCAD.Rendering
             var vt = new ViewTransform(Scene.Bounds, ActualWidth,
                 ActualHeight, zoom: Zoom, marginPx: 20);
 
-            foreach (var p in Scene.Primitives)
-            {
-                DrawPrimitive(drawingContext, p, vt);
-            }
-        }
-
-        private static void DrawPrimitive(DrawingContext dc, IPrimitive p, ViewTransform vt)
-        {
-            var style = p.Style;
-            var color = Color.FromArgb(style.A, style.R, style.G, style.B);
-
-            var stroke = new SolidColorBrush(color);
-            stroke.Freeze();
-
-            Brush? fill = null;
-            if (style.Filled)
-            {
-                fill = new SolidColorBrush(
-                    Color.FromArgb( style.A, style.R, style.G, style.B));
-                fill.Freeze();
-            }
-
-            var pen = new Pen(stroke, Math.Max(1.0, vt.ToPixels(style.StrokeWidthWorld)));
-            pen.Freeze();
-
-            switch (p)
-            {
-                case LinePrimitive line:
-                    dc.DrawLine(pen, vt.ToScreen(line.A), vt.ToScreen(line.B));
-                    break;
-
-                case CirclePrimitive circle:
-                    {
-                        var c = vt.ToScreen(circle.Center);
-                        var r = vt.ToPixels(circle.Radius);
-                        dc.DrawEllipse(fill, pen, c, r, r);
-                        break;
-                    }
-
-                case TrianglePrimitive tri:
-                    {
-                        var g = new StreamGeometry();
-                        using (var ctx = g.Open())
-                        {
-                            ctx.BeginFigure(vt.ToScreen(tri.A), isFilled: style.Filled, isClosed: true);
-                            ctx.LineTo(vt.ToScreen(tri.B), isStroked: true, isSmoothJoin: false);
-                            ctx.LineTo(vt.ToScreen(tri.C), isStroked: true, isSmoothJoin: false);
-                        }
-                        g.Freeze();
-                        dc.DrawGeometry(fill, pen, g);
-                        break;
-                    }
-            }
+             _renderer.Render(Scene, drawingContext, vt);
         }
     }
 }
